@@ -91,6 +91,7 @@ export const TOOLS: Tool[] = [
     description: "Count words and characters, and estimate reading time.",
     category: "Text",
     icon: "AlignLeft",
+    functional: true,
   },
   {
     slug: "background-remover",

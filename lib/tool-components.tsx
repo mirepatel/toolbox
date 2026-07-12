@@ -34,4 +34,8 @@ export const toolComponents: Record<string, ComponentType> = {
     () => import("@/features/unit-converter/components/unit-converter-tool"),
     { loading: () => <ToolSkeleton /> }
   ),
+  "word-counter": dynamic(
+  () => import("@/features/word-counter/components/word-counter-tool"),
+  { loading: () => <ToolSkeleton /> }
+  ),
 };
