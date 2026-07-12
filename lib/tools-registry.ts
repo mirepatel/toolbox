@@ -1,0 +1,170 @@
+import type { Tool } from "@/types/tool";
+
+/**
+ * Single source of truth for every tool on the platform.
+ *
+ * Adding a tool = one entry here + (optionally) a component registered in
+ * lib/tool-components.tsx. Tools without a component automatically render
+ * the shared ComingSoon state, so the catalog can grow well ahead of build-out.
+ */
+export const TOOLS: Tool[] = [
+  {
+    slug: "json-formatter",
+    name: "JSON Formatter",
+    description: "Beautify, validate, and minify JSON in one click.",
+    category: "Developer",
+    icon: "Code2",
+    popular: true,
+    functional: true,
+  },
+  {
+    slug: "uuid-generator",
+    name: "UUID Generator",
+    description: "Generate RFC-4122 UUIDs, one or a thousand at a time.",
+    category: "Developer",
+    icon: "Binary",
+    popular: true,
+    functional: true,
+  },
+  {
+    slug: "regex-tester",
+    name: "Regex Tester",
+    description: "Test patterns against real text with live match highlighting.",
+    category: "Developer",
+    icon: "Code2",
+  },
+  {
+    slug: "password-generator",
+    name: "Password Generator",
+    description: "Create strong, random passwords with adjustable rules.",
+    category: "Security",
+    icon: "KeyRound",
+    popular: true,
+    trending: true,
+    functional: true,
+  },
+  {
+    slug: "hash-generator",
+    name: "Hash Generator",
+    description: "Generate SHA-1, SHA-256, and SHA-512 hashes from text.",
+    category: "Security",
+    icon: "Hash",
+  },
+  {
+    slug: "qr-generator",
+    name: "QR Code Generator",
+    description: "Turn any link or text into a scannable QR code.",
+    category: "QR",
+    icon: "QrCode",
+    popular: true,
+    trending: true,
+    functional: true,
+  },
+  {
+    slug: "color-palette",
+    name: "Palette Generator",
+    description: "Generate harmonious color palettes with one press of space.",
+    category: "Color",
+    icon: "Palette",
+    popular: true,
+    functional: true,
+  },
+  {
+    slug: "contrast-checker",
+    name: "Contrast Checker",
+    description: "Check color pairs against WCAG AA and AAA standards.",
+    category: "Color",
+    icon: "Eye",
+  },
+  {
+    slug: "unit-converter",
+    name: "Unit Converter",
+    description: "Convert length, weight, and temperature in real time.",
+    category: "Converters",
+    icon: "Ruler",
+    popular: true,
+    functional: true,
+  },
+  {
+    slug: "word-counter",
+    name: "Word Counter",
+    description: "Count words and characters, and estimate reading time.",
+    category: "Text",
+    icon: "AlignLeft",
+  },
+  {
+    slug: "background-remover",
+    name: "Background Remover",
+    description: "Remove image backgrounds automatically, no green screen.",
+    category: "Image",
+    icon: "Wand2",
+    trending: true,
+  },
+  {
+    slug: "merge-pdf",
+    name: "Merge PDF",
+    description: "Combine multiple PDFs into a single document.",
+    category: "PDF",
+    icon: "Files",
+  },
+  {
+    slug: "text-summarizer",
+    name: "Text Summarizer",
+    description: "Condense long text into a short, clear summary.",
+    category: "AI",
+    icon: "Sparkles",
+  },
+  {
+    slug: "video-compressor",
+    name: "Video Compressor",
+    description: "Shrink video file size for faster sharing.",
+    category: "Video",
+    icon: "Video",
+  },
+  {
+    slug: "audio-converter",
+    name: "Audio Converter",
+    description: "Convert audio between MP3, WAV, and AAC.",
+    category: "Audio",
+    icon: "Music",
+  },
+  {
+    slug: "pomodoro-timer",
+    name: "Pomodoro Timer",
+    description: "Stay focused with timed work and break intervals.",
+    category: "Utilities",
+    icon: "Timer",
+  },
+  {
+    slug: "percentage-calculator",
+    name: "Percentage Calculator",
+    description: "Work out percentages, increases, and discounts fast.",
+    category: "Calculators",
+    icon: "Calculator",
+  },
+  {
+    slug: "type-scale-generator",
+    name: "Type Scale Generator",
+    description: "Generate a harmonious type scale for any project.",
+    category: "Typography",
+    icon: "Type",
+  },
+  {
+    slug: "file-converter",
+    name: "File Converter",
+    description: "Convert files between common document formats.",
+    category: "Files",
+    icon: "RefreshCw",
+  },
+  {
+    slug: "markdown-editor",
+    name: "Markdown Editor",
+    description: "Write Markdown with a live preview side by side.",
+    category: "Productivity",
+    icon: "ListChecks",
+  },
+];
+
+export function getToolBySlug(slug: string): Tool | undefined {
+  return TOOLS.find((tool) => tool.slug === slug);
+}
