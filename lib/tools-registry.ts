@@ -147,6 +147,14 @@ export const TOOLS: Tool[] = [
     icon: "Calculator",
   },
   {
+  slug: "loan-calc",
+  name: "Loan Calculator",
+  description: "Estimate monthly payments and total interest.",
+  category: "Calculators",
+  icon: "Calculator",
+  functional: true,
+  },
+  {
     slug: "type-scale-generator",
     name: "Type Scale Generator",
     description: "Generate a harmonious type scale for any project.",

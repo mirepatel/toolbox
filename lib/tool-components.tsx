@@ -50,4 +50,8 @@ export const toolComponents: Record<string, ComponentType> = {
   () => import("@/features/contrast-checker/components/contrast-checker-tool"),
   { loading: () => <ToolSkeleton /> }
   ),
+  "loan-calc": dynamic(
+  () => import("@/features/loan-calculator/components/loan-calculator-tool"),
+  { loading: () => <ToolSkeleton /> }
+  ),
 };
