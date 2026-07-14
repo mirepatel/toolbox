@@ -32,6 +32,7 @@ export const TOOLS: Tool[] = [
     description: "Test patterns against real text with live match highlighting.",
     category: "Developer",
     icon: "Code2",
+    functional: true,
   },
   {
     slug: "password-generator",
@@ -49,6 +50,7 @@ export const TOOLS: Tool[] = [
     description: "Generate SHA-1, SHA-256, and SHA-512 hashes from text.",
     category: "Security",
     icon: "Hash",
+    functional: true,
   },
   {
     slug: "qr-generator",
@@ -75,6 +77,7 @@ export const TOOLS: Tool[] = [
     description: "Check color pairs against WCAG AA and AAA standards.",
     category: "Color",
     icon: "Eye",
+    functional: true,
   },
   {
     slug: "unit-converter",

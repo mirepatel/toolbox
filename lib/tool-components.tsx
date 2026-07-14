@@ -38,4 +38,16 @@ export const toolComponents: Record<string, ComponentType> = {
   () => import("@/features/word-counter/components/word-counter-tool"),
   { loading: () => <ToolSkeleton /> }
   ),
+  "hash-generator": dynamic(
+  () => import("@/features/hash-generator/components/hash-generator-tool"),
+  { loading: () => <ToolSkeleton /> }
+  ),
+  "regex-tester": dynamic(
+  () => import("@/features/regex-tester/components/regex-tester-tool"),
+  { loading: () => <ToolSkeleton /> }
+  ),
+  "contrast-checker": dynamic(
+  () => import("@/features/contrast-checker/components/contrast-checker-tool"),
+  { loading: () => <ToolSkeleton /> }
+  ),
 };
