@@ -54,4 +54,8 @@ export const toolComponents: Record<string, ComponentType> = {
   () => import("@/features/loan-calculator/components/loan-calculator-tool"),
   { loading: () => <ToolSkeleton /> }
   ),
+  "percentage-calculator": dynamic(
+  () => import("@/features/percentage-calculator/components/percentage-calculator-tool"),
+  { loading: () => <ToolSkeleton /> }
+  ),
 };

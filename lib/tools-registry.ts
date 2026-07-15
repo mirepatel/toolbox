@@ -145,6 +145,7 @@ export const TOOLS: Tool[] = [
     description: "Work out percentages, increases, and discounts fast.",
     category: "Calculators",
     icon: "Calculator",
+    functional: true,
   },
   {
   slug: "loan-calc",
