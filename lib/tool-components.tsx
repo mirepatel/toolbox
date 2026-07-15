@@ -66,4 +66,8 @@ export const toolComponents: Record<string, ComponentType> = {
   () => import("@/features/type-scale-generator/components/type-scale-generator-tool"),
   { loading: () => <ToolSkeleton /> }
   ),
+  "merge-pdf": dynamic(
+  () => import("@/features/merge-pdf/components/merge-pdf-tool"),
+  { loading: () => <ToolSkeleton /> }
+  ),
 };

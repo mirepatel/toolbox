@@ -110,6 +110,7 @@ export const TOOLS: Tool[] = [
     description: "Combine multiple PDFs into a single document.",
     category: "PDF",
     icon: "Files",
+    functional: true,
   },
   {
     slug: "text-summarizer",

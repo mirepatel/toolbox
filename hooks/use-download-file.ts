@@ -2,9 +2,9 @@
 
 import { useCallback } from "react";
 
-/** Triggers a browser download of `content` as a file — no backend involved. */
+/** Triggers a browser download of `content` as a file — text or binary, no backend involved. */
 export function useDownloadFile() {
-  return useCallback((filename: string, content: string, mimeType = "text/plain") => {
+  return useCallback((filename: string, content: BlobPart, mimeType = "text/plain") => {
     const blob = new Blob([content], { type: mimeType });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
