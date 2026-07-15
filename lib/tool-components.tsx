@@ -58,4 +58,12 @@ export const toolComponents: Record<string, ComponentType> = {
   () => import("@/features/percentage-calculator/components/percentage-calculator-tool"),
   { loading: () => <ToolSkeleton /> }
   ),
+  "markdown-editor": dynamic(
+  () => import("@/features/markdown-editor/components/markdown-editor-tool"),
+  { loading: () => <ToolSkeleton /> }
+  ),
+  "type-scale-generator": dynamic(
+  () => import("@/features/type-scale-generator/components/type-scale-generator-tool"),
+  { loading: () => <ToolSkeleton /> }
+  ),
 };

@@ -161,6 +161,7 @@ export const TOOLS: Tool[] = [
     description: "Generate a harmonious type scale for any project.",
     category: "Typography",
     icon: "Type",
+    functional: true,
   },
   {
     slug: "file-converter",
@@ -175,6 +176,7 @@ export const TOOLS: Tool[] = [
     description: "Write Markdown with a live preview side by side.",
     category: "Productivity",
     icon: "ListChecks",
+    functional: true,
   },
 ];
 
