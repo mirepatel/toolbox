@@ -39,7 +39,7 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
 
   return (
     <CommandDialog open={open} onOpenChange={onOpenChange}>
-      <CommandInput value={query} onValueChange={setQuery} placeholder="Search tools…" autoFocus />
+      <CommandInput value={query} onValueChange={setQuery} placeholder="Search tools…" aria-label="Search tools" autoFocus />
       <CommandList>
         <CommandEmpty>No tools found{query ? ` for "${query}"` : ""}.</CommandEmpty>
         {filtered.map((tool) => {

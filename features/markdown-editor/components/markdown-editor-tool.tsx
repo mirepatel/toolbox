@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import { Download } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -24,6 +24,7 @@ const hello = "world";
 `;
 
 export default function MarkdownEditorTool() {
+  const markdownId = useId();
   const [source, setSource] = useState(SAMPLE);
   const html = useMemo(() => renderMarkdown(source), [source]);
   const download = useDownloadFile();
@@ -42,13 +43,14 @@ export default function MarkdownEditorTool() {
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         <ToolPanel>
-          <ToolLabel>Markdown</ToolLabel>
-          <Textarea rows={18} value={source} onChange={(e) => setSource(e.target.value)} />
+          <ToolLabel id={markdownId}>Markdown</ToolLabel>
+          <Textarea aria-labelledby={markdownId} rows={18} value={source} onChange={(e) => setSource(e.target.value)} />
         </ToolPanel>
         <ToolPanel>
           <ToolLabel>Preview</ToolLabel>
           <div
             className="markdown-preview rounded-lg bg-muted px-4 py-3"
+            aria-label="Rendered markdown preview"
             dangerouslySetInnerHTML={{ __html: html }}
           />
         </ToolPanel>

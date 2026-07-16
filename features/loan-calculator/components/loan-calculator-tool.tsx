@@ -37,44 +37,82 @@ export default function LoanCalculatorTool() {
       <ToolPanel>
         <div className="space-y-4">
           <div>
-            <ToolLabel>Loan amount ($)</ToolLabel>
-            <Input type="number" step="0.01" {...register("principal", { valueAsNumber: true })} />
-            {errors.principal && <p className="mt-1 text-xs text-red-500">{errors.principal.message}</p>}
+            <ToolLabel id="loan-amount-label">Loan amount ($)</ToolLabel>
+            <Input
+              id="principal"
+              aria-labelledby="loan-amount-label"
+              aria-invalid={!!errors.principal}
+              aria-describedby={errors.principal ? "principal-error" : undefined}
+              type="number"
+              step="0.01"
+              {...register("principal", { valueAsNumber: true })}
+            />
+            {errors.principal && (
+              <p id="principal-error" role="alert" className="mt-1 text-xs text-red-500">
+                {errors.principal.message}
+              </p>
+            )}
           </div>
           <div>
-            <ToolLabel>Annual interest rate (%)</ToolLabel>
-            <Input type="number" step="0.01" {...register("annualRate", { valueAsNumber: true })} />
-            {errors.annualRate && <p className="mt-1 text-xs text-red-500">{errors.annualRate.message}</p>}
+            <ToolLabel id="rate-label">Annual interest rate (%)</ToolLabel>
+            <Input
+              id="annualRate"
+              aria-labelledby="rate-label"
+              aria-invalid={!!errors.annualRate}
+              aria-describedby={errors.annualRate ? "rate-error" : undefined}
+              type="number"
+              step="0.01"
+              {...register("annualRate", { valueAsNumber: true })}
+            />
+            {errors.annualRate && (
+              <p id="rate-error" role="alert" className="mt-1 text-xs text-red-500">
+                {errors.annualRate.message}
+              </p>
+            )}
           </div>
           <div>
-            <ToolLabel>Term (years)</ToolLabel>
-            <Input type="number" step="1" {...register("termYears", { valueAsNumber: true })} />
-            {errors.termYears && <p className="mt-1 text-xs text-red-500">{errors.termYears.message}</p>}
+            <ToolLabel id="term-label">Term (years)</ToolLabel>
+            <Input
+              id="termYears"
+              aria-labelledby="term-label"
+              aria-invalid={!!errors.termYears}
+              aria-describedby={errors.termYears ? "term-error" : undefined}
+              type="number"
+              step="1"
+              {...register("termYears", { valueAsNumber: true })}
+            />
+            {errors.termYears && (
+              <p id="term-error" role="alert" className="mt-1 text-xs text-red-500">
+                {errors.termYears.message}
+              </p>
+            )}
           </div>
         </div>
       </ToolPanel>
 
       <ToolPanel>
-        {result ? (
-          <div className="space-y-4">
-            <div>
-              <div className="text-xs text-muted-foreground">Monthly payment</div>
-              <div className="text-3xl font-semibold tracking-tight">{currency.format(result.monthlyPayment)}</div>
-            </div>
-            <div className="grid grid-cols-2 gap-3 pt-2">
-              <div className="rounded-lg bg-muted px-3.5 py-3">
-                <div className="text-xs text-muted-foreground">Total payment</div>
-                <div className="mt-0.5 font-mono text-sm">{currency.format(result.totalPayment)}</div>
+        <div aria-live="polite">
+          {result ? (
+            <div className="space-y-4">
+              <div>
+                <div className="text-xs text-muted-foreground">Monthly payment</div>
+                <div className="text-3xl font-semibold tracking-tight">{currency.format(result.monthlyPayment)}</div>
               </div>
-              <div className="rounded-lg bg-muted px-3.5 py-3">
-                <div className="text-xs text-muted-foreground">Total interest</div>
-                <div className="mt-0.5 font-mono text-sm">{currency.format(result.totalInterest)}</div>
+              <div className="grid grid-cols-2 gap-3 pt-2">
+                <div className="rounded-lg bg-muted px-3.5 py-3">
+                  <div className="text-xs text-muted-foreground">Total payment</div>
+                  <div className="mt-0.5 font-mono text-sm">{currency.format(result.totalPayment)}</div>
+                </div>
+                <div className="rounded-lg bg-muted px-3.5 py-3">
+                  <div className="text-xs text-muted-foreground">Total interest</div>
+                  <div className="mt-0.5 font-mono text-sm">{currency.format(result.totalInterest)}</div>
+                </div>
               </div>
             </div>
-          </div>
-        ) : (
-          <p className="text-sm text-muted-foreground">Fix the highlighted fields to see your monthly payment.</p>
-        )}
+          ) : (
+            <p className="text-sm text-muted-foreground">Fix the highlighted fields to see your monthly payment.</p>
+          )}
+        </div>
       </ToolPanel>
     </div>
   );

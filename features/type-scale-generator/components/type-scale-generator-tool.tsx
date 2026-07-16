@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ToolPanel, ToolLabel } from "@/components/tools/tool-panel";
@@ -16,6 +16,10 @@ const RATIOS = [
 ];
 
 export default function TypeScaleGeneratorTool() {
+  const baseSizeId = useId();
+  const stepsUpId = useId();
+  const stepsDownId = useId();
+  const ratioId = useId();
   const [baseSize, setBaseSize] = useState(16);
   const [ratio, setRatio] = useState(1.25);
   const [stepsUp, setStepsUp] = useState(5);
@@ -39,12 +43,18 @@ export default function TypeScaleGeneratorTool() {
       <ToolPanel>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <ToolLabel>Base size (px)</ToolLabel>
-            <Input type="number" value={baseSize} onChange={(e) => setBaseSize(Number(e.target.value) || 16)} />
+            <ToolLabel id={baseSizeId}>Base size (px)</ToolLabel>
+            <Input
+              aria-labelledby={baseSizeId}
+              type="number"
+              value={baseSize}
+              onChange={(e) => setBaseSize(Number(e.target.value) || 16)}
+            />
           </div>
           <div>
-            <ToolLabel>Steps up</ToolLabel>
+            <ToolLabel id={stepsUpId}>Steps up</ToolLabel>
             <Input
+              aria-labelledby={stepsUpId}
               type="number"
               min={0}
               max={10}
@@ -53,8 +63,9 @@ export default function TypeScaleGeneratorTool() {
             />
           </div>
           <div>
-            <ToolLabel>Steps down</ToolLabel>
+            <ToolLabel id={stepsDownId}>Steps down</ToolLabel>
             <Input
+              aria-labelledby={stepsDownId}
               type="number"
               min={0}
               max={5}
@@ -63,8 +74,9 @@ export default function TypeScaleGeneratorTool() {
             />
           </div>
           <div>
-            <ToolLabel>Ratio</ToolLabel>
+            <ToolLabel id={ratioId}>Ratio</ToolLabel>
             <select
+              aria-labelledby={ratioId}
               value={ratio}
               onChange={(e) => setRatio(Number(e.target.value))}
               className="w-full rounded-lg border border-border bg-panel px-3 py-2 text-sm outline-none"
@@ -80,7 +92,7 @@ export default function TypeScaleGeneratorTool() {
       </ToolPanel>
 
       <ToolPanel>
-        <div className="space-y-3">
+        <div className="space-y-3" aria-live="polite" aria-label="Type scale preview">
           {scale.map((s) => (
             <div
               key={s.step}
@@ -106,7 +118,9 @@ export default function TypeScaleGeneratorTool() {
             Copy
           </Button>
         </div>
-        <pre className="overflow-x-auto rounded-lg bg-muted px-3.5 py-3 font-mono text-xs">{cssBlock}</pre>
+        <pre className="overflow-x-auto rounded-lg bg-muted px-3.5 py-3 font-mono text-xs" aria-live="polite">
+          {cssBlock}
+        </pre>
       </ToolPanel>
     </div>
   );

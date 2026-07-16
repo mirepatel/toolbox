@@ -102,7 +102,11 @@ export default function MergePdfTool() {
             ))}
           </div>
 
-          {error && <div className="mt-3 text-sm text-red-500">{error}</div>}
+          {error && (
+            <div className="mt-3 text-sm text-red-500" role="alert">
+              {error}
+            </div>
+          )}
 
           <Button onClick={handleMerge} disabled={isMerging || files.length < 2} className="mt-4">
             {isMerging && <Loader2 size={14} className="animate-spin" />}

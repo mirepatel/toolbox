@@ -1,14 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
-import { ToolPanel } from "@/components/tools/tool-panel";
+import { ToolPanel, ToolLabel } from "@/components/tools/tool-panel";
 import { computeTextStats } from "@/features/word-counter/lib/stats";
 
 const SAMPLE =
   "Paste or type your text here. Toolbox counts words, characters, sentences, and estimates reading time as you go.";
 
 export default function WordCounterTool() {
+  const textId = useId();
   const [text, setText] = useState(SAMPLE);
   const stats = useMemo(() => computeTextStats(text), [text]);
 
@@ -24,9 +25,12 @@ export default function WordCounterTool() {
   return (
     <div className="space-y-4">
       <ToolPanel>
-        <Textarea rows={10} value={text} onChange={(e) => setText(e.target.value)} />
+        <ToolLabel id={textId} visuallyHidden>
+          Text to analyze
+        </ToolLabel>
+        <Textarea aria-labelledby={textId} rows={10} value={text} onChange={(e) => setText(e.target.value)} />
       </ToolPanel>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3" aria-live="polite" aria-label="Text statistics">
         {items.map((item) => (
           <div key={item.label} className="rounded-xl border border-border bg-panel px-4 py-3.5">
             <div className="text-2xl font-semibold tracking-tight">{item.value}</div>

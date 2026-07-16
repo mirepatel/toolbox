@@ -35,11 +35,12 @@ export default function ColorPaletteTool() {
         </Button>
         <span className="text-xs text-muted-foreground">or press space</span>
       </div>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-5" aria-live="polite" aria-label="Generated color palette">
         {palette.map((hex, i) => (
           <button
             key={`${hex}-${i}`}
             onClick={() => copy(hex)}
+            aria-label={`Copy color ${hex.toUpperCase()}`}
             className="flex h-36 flex-col justify-end rounded-xl p-3 text-left transition hover:-translate-y-0.5"
             style={{ backgroundColor: hex }}
           >

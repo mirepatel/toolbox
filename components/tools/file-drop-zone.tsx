@@ -41,10 +41,17 @@ export function FileDropZone({
         handleFiles(e.dataTransfer.files);
       }}
       onClick={() => inputRef.current?.click()}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          inputRef.current?.click();
+        }
+      }}
       role="button"
       tabIndex={0}
+      aria-label={label}
       className={cn(
-        "flex cursor-pointer flex-col items-center gap-2 rounded-xl border border-dashed px-6 py-10 text-center transition",
+        "flex cursor-pointer flex-col items-center gap-2 rounded-xl border border-dashed px-6 py-10 text-center transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
         isDragging ? "border-accent bg-accent/5" : "border-border hover:bg-muted"
       )}
     >

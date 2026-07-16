@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useId, useState } from "react";
 import { RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ToolPanel, ToolLabel } from "@/components/tools/tool-panel";
@@ -9,6 +9,7 @@ import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 const COUNTS = [1, 5, 10, 20] as const;
 
 export default function UuidGeneratorTool() {
+  const quantityId = useId();
   const [count, setCount] = useState<number>(5);
   const [uppercase, setUppercase] = useState(false);
   const [uuids, setUuids] = useState<string[]>([]);
@@ -32,8 +33,9 @@ export default function UuidGeneratorTool() {
       <ToolPanel>
         <div className="flex flex-wrap items-end gap-4">
           <div>
-            <ToolLabel>Quantity</ToolLabel>
+            <ToolLabel id={quantityId}>Quantity</ToolLabel>
             <select
+              aria-labelledby={quantityId}
               value={count}
               onChange={(e) => setCount(Number(e.target.value))}
               className="rounded-lg border border-border bg-panel px-3 py-2 text-sm outline-none"
@@ -61,7 +63,7 @@ export default function UuidGeneratorTool() {
       </ToolPanel>
 
       <ToolPanel>
-        <div className="space-y-2">
+        <div className="space-y-2" aria-live="polite" aria-label="Generated UUIDs">
           {uuids.map((id, i) => (
             <div
               key={`${id}-${i}`}

@@ -1,11 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import { ToolPanel, ToolLabel } from "@/components/tools/tool-panel";
 import { Input } from "@/components/ui/input";
 import { contrastRatio, getWcagChecks } from "@/features/contrast-checker/lib/contrast";
 
 export default function ContrastCheckerTool() {
+  const fgId = useId();
+  const bgId = useId();
   const [fg, setFg] = useState("#1a1a1a");
   const [bg, setBg] = useState("#ffffff");
 
@@ -18,32 +20,34 @@ export default function ContrastCheckerTool() {
       <ToolPanel>
         <div className="space-y-4">
           <div>
-            <ToolLabel>Text color</ToolLabel>
+            <ToolLabel id={fgId}>Text color</ToolLabel>
             <div className="flex items-center gap-2">
               <input
                 type="color"
+                aria-labelledby={fgId}
                 value={fg}
                 onChange={(e) => setFg(e.target.value)}
                 className="h-10 w-10 cursor-pointer rounded-lg border border-border"
               />
-              <Input value={fg} onChange={(e) => setFg(e.target.value)} className="font-mono" />
+              <Input aria-labelledby={fgId} value={fg} onChange={(e) => setFg(e.target.value)} className="font-mono" />
             </div>
           </div>
           <div>
-            <ToolLabel>Background color</ToolLabel>
+            <ToolLabel id={bgId}>Background color</ToolLabel>
             <div className="flex items-center gap-2">
               <input
                 type="color"
+                aria-labelledby={bgId}
                 value={bg}
                 onChange={(e) => setBg(e.target.value)}
                 className="h-10 w-10 cursor-pointer rounded-lg border border-border"
               />
-              <Input value={bg} onChange={(e) => setBg(e.target.value)} className="font-mono" />
+              <Input aria-labelledby={bgId} value={bg} onChange={(e) => setBg(e.target.value)} className="font-mono" />
             </div>
           </div>
         </div>
 
-        <div className="mt-5 space-y-2">
+        <div className="mt-5 space-y-2" aria-live="polite" aria-label="WCAG contrast results">
           {checks.map((check) => (
             <div key={check.label} className="flex items-center justify-between rounded-lg bg-muted px-3 py-2 text-sm">
               <span>{check.label}</span>
@@ -75,7 +79,7 @@ export default function ContrastCheckerTool() {
           <p className="text-sm" style={{ color: fg }}>
             Small print reads like this.
           </p>
-          <div className="text-4xl font-bold" style={{ color: fg }}>
+          <div className="text-4xl font-bold" style={{ color: fg }} aria-live="polite">
             {validRatio !== null ? validRatio.toFixed(2) : "—"}:1
           </div>
         </div>

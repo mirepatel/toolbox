@@ -149,12 +149,12 @@ export const TOOLS: Tool[] = [
     functional: true,
   },
   {
-  slug: "loan-calc",
-  name: "Loan Calculator",
-  description: "Estimate monthly payments and total interest.",
-  category: "Calculators",
-  icon: "Calculator",
-  functional: true,
+    slug: "loan-calc",
+    name: "Loan Calculator",
+    description: "Estimate monthly payments and total interest.",
+    category: "Calculators",
+    icon: "Calculator",
+    functional: true,
   },
   {
     slug: "type-scale-generator",

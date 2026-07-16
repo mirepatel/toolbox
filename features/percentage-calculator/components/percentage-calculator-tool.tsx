@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ToolPanel, ToolLabel } from "@/components/tools/tool-panel";
@@ -21,6 +21,10 @@ const LABELS: Record<Mode, [string, string, string]> = {
 };
 
 export default function PercentageCalculatorTool() {
+  const modeGroupId = useId();
+  const aId = useId();
+  const bId = useId();
+  const resultId = useId();
   const [mode, setMode] = useState<Mode>("percentOf");
   const [a, setA] = useState("20");
   const [b, setB] = useState("150");
@@ -40,9 +44,15 @@ export default function PercentageCalculatorTool() {
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Calculation mode" id={modeGroupId}>
         {MODES.map((m) => (
-          <Button key={m.id} variant={mode === m.id ? "default" : "outline"} size="sm" onClick={() => setMode(m.id)}>
+          <Button
+            key={m.id}
+            variant={mode === m.id ? "default" : "outline"}
+            size="sm"
+            aria-pressed={mode === m.id}
+            onClick={() => setMode(m.id)}
+          >
             {m.label}
           </Button>
         ))}
@@ -51,17 +61,17 @@ export default function PercentageCalculatorTool() {
       <ToolPanel>
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <ToolLabel>{labelA}</ToolLabel>
-            <Input type="number" value={a} onChange={(e) => setA(e.target.value)} className="font-mono" />
+            <ToolLabel id={aId}>{labelA}</ToolLabel>
+            <Input aria-labelledby={aId} type="number" value={a} onChange={(e) => setA(e.target.value)} className="font-mono" />
           </div>
           <div>
-            <ToolLabel>{labelB}</ToolLabel>
-            <Input type="number" value={b} onChange={(e) => setB(e.target.value)} className="font-mono" />
+            <ToolLabel id={bId}>{labelB}</ToolLabel>
+            <Input aria-labelledby={bId} type="number" value={b} onChange={(e) => setB(e.target.value)} className="font-mono" />
           </div>
         </div>
         <div className="mt-5">
-          <ToolLabel>{labelResult}</ToolLabel>
-          <div className="rounded-lg bg-muted px-4 py-4 font-mono text-2xl">
+          <ToolLabel id={resultId}>{labelResult}</ToolLabel>
+          <div className="rounded-lg bg-muted px-4 py-4 font-mono text-2xl" aria-live="polite" aria-labelledby={resultId}>
             {result !== null ? `${Number(result.toFixed(4))}${showsPercentSign ? "%" : ""}` : "—"}
           </div>
         </div>

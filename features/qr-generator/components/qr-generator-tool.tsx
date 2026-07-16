@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import Image from "next/image";
 import { ToolPanel, ToolLabel } from "@/components/tools/tool-panel";
 import { Input } from "@/components/ui/input";
@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 const SIZES = [160, 240, 320] as const;
 
 export default function QrGeneratorTool() {
+  const textId = useId();
+  const sizeGroupId = useId();
   const [text, setText] = useState("https://claude.ai");
   const [size, setSize] = useState<(typeof SIZES)[number]>(240);
 
@@ -17,12 +19,12 @@ export default function QrGeneratorTool() {
   return (
     <div className="grid gap-4 md:grid-cols-2">
       <ToolPanel>
-        <ToolLabel>Text or URL</ToolLabel>
-        <Input value={text} onChange={(e) => setText(e.target.value)} className="mb-4" />
-        <ToolLabel>Size</ToolLabel>
-        <div className="flex gap-2">
+        <ToolLabel id={textId}>Text or URL</ToolLabel>
+        <Input aria-labelledby={textId} value={text} onChange={(e) => setText(e.target.value)} className="mb-4" />
+        <ToolLabel id={sizeGroupId}>Size</ToolLabel>
+        <div className="flex gap-2" role="group" aria-labelledby={sizeGroupId}>
           {SIZES.map((s) => (
-            <Button key={s} variant={size === s ? "default" : "outline"} size="sm" onClick={() => setSize(s)}>
+            <Button key={s} variant={size === s ? "default" : "outline"} size="sm" aria-pressed={size === s} onClick={() => setSize(s)}>
               {s}px
             </Button>
           ))}

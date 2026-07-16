@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Command as CommandPrimitive } from "cmdk";
 import { Search } from "lucide-react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 
 export const Command = React.forwardRef<
@@ -24,6 +24,10 @@ export function CommandDialog({ open, onOpenChange, children }: CommandDialogPro
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="p-0">
+        <DialogTitle className="sr-only">Search tools</DialogTitle>
+        <DialogDescription className="sr-only">
+          Search and jump to any tool by name, description, or category.
+        </DialogDescription>
         <Command shouldFilter={false} className="[&_[cmdk-group-heading]]:px-2">
           {children}
         </Command>

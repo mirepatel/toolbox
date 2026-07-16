@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useId, useState } from "react";
 import { RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ToolPanel, ToolLabel } from "@/components/tools/tool-panel";
@@ -8,6 +8,7 @@ import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { generatePassword, estimateStrength, type PasswordOptions } from "@/features/password-generator/lib/generate";
 
 export default function PasswordGeneratorTool() {
+  const lengthId = useId();
   const [length, setLength] = useState(16);
   const [options, setOptions] = useState<PasswordOptions>({ upper: true, lower: true, numbers: true, symbols: true });
   const [password, setPassword] = useState("");
@@ -25,7 +26,11 @@ export default function PasswordGeneratorTool() {
 
   return (
     <ToolPanel>
-      <div className="mb-4 break-all rounded-lg bg-muted px-4 py-4 font-mono text-2xl">
+      <div
+        className="mb-4 break-all rounded-lg bg-muted px-4 py-4 font-mono text-2xl"
+        aria-live="polite"
+        aria-label="Generated password"
+      >
         {password || "Select at least one character set"}
       </div>
 
@@ -43,16 +48,17 @@ export default function PasswordGeneratorTool() {
           <div className="h-1.5 w-28 overflow-hidden rounded-full bg-muted">
             <div className="h-full bg-accent transition-all" style={{ width: `${strength.pct}%` }} />
           </div>
-          <span className="text-muted-foreground">{strength.label}</span>
+          <span className="text-muted-foreground">Strength: {strength.label}</span>
         </div>
       </div>
 
       <div className="mb-2 flex items-center justify-between">
-        <ToolLabel>Length</ToolLabel>
+        <ToolLabel id={lengthId}>Length</ToolLabel>
         <span className="font-mono text-sm text-muted-foreground">{length}</span>
       </div>
       <input
         type="range"
+        aria-labelledby={lengthId}
         min={6}
         max={48}
         value={length}
@@ -60,11 +66,29 @@ export default function PasswordGeneratorTool() {
         className="mb-5 w-full accent-accent"
       />
 
-      <div className="flex flex-wrap gap-2">
-        <Button variant={options.upper ? "default" : "outline"} size="sm" onClick={() => toggle("upper")}>ABC</Button>
-        <Button variant={options.lower ? "default" : "outline"} size="sm" onClick={() => toggle("lower")}>abc</Button>
-        <Button variant={options.numbers ? "default" : "outline"} size="sm" onClick={() => toggle("numbers")}>123</Button>
-        <Button variant={options.symbols ? "default" : "outline"} size="sm" onClick={() => toggle("symbols")}>#!$</Button>
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Character sets to include">
+        <Button variant={options.upper ? "default" : "outline"} size="sm" aria-pressed={options.upper} onClick={() => toggle("upper")}>
+          ABC
+        </Button>
+        <Button variant={options.lower ? "default" : "outline"} size="sm" aria-pressed={options.lower} onClick={() => toggle("lower")}>
+          abc
+        </Button>
+        <Button
+          variant={options.numbers ? "default" : "outline"}
+          size="sm"
+          aria-pressed={options.numbers}
+          onClick={() => toggle("numbers")}
+        >
+          123
+        </Button>
+        <Button
+          variant={options.symbols ? "default" : "outline"}
+          size="sm"
+          aria-pressed={options.symbols}
+          onClick={() => toggle("symbols")}
+        >
+          #!$
+        </Button>
       </div>
       <p className="mt-4 text-xs text-muted-foreground">
         Ambiguous characters like 0, O, 1, l, and I are excluded for readability.

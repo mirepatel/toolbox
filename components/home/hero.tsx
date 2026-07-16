@@ -66,6 +66,7 @@ export function Hero({ query, onQueryChange, activeCategory, onCategoryChange }:
             value={query}
             onChange={(e) => onQueryChange(e.target.value)}
             placeholder="Search JSON formatter, password generator, QR code…"
+            aria-label="Search tools"
             className="w-full rounded-xl border border-border bg-panel py-3.5 pl-11 pr-4 text-sm shadow-sm outline-none transition focus:border-neutral-400"
           />
         </motion.div>
