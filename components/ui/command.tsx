@@ -36,12 +36,18 @@ export function CommandDialog({ open, onOpenChange, children }: CommandDialogPro
   );
 }
 
-export function CommandInput({ className, ...props }: React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>) {
+export function CommandInput({
+  className,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>) {
   return (
     <div className="flex items-center gap-3 border-b border-border px-4 py-3.5">
       <Search size={16} className="text-muted-foreground shrink-0" />
       <CommandPrimitive.Input
-        className={cn("flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground", className)}
+        className={cn(
+          "flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground",
+          className
+        )}
         {...props}
       />
     </div>
@@ -61,7 +67,24 @@ export const CommandList = React.forwardRef<
 CommandList.displayName = "CommandList";
 
 export function CommandEmpty(props: React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty>) {
-  return <CommandPrimitive.Empty className="py-8 text-center text-sm text-muted-foreground" {...props} />;
+  return (
+    <CommandPrimitive.Empty className="py-8 text-center text-sm text-muted-foreground" {...props} />
+  );
+}
+
+export function CommandGroup({
+  className,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof CommandPrimitive.Group>) {
+  return (
+    <CommandPrimitive.Group
+      className={cn(
+        "px-2 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:pb-1.5 [&_[cmdk-group-heading]]:pt-3 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground",
+        className
+      )}
+      {...props}
+    />
+  );
 }
 
 export const CommandItem = React.forwardRef<
