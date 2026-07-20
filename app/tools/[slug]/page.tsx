@@ -17,7 +17,23 @@ export async function generateMetadata({
   const { slug } = await params;
   const tool = getToolBySlug(slug);
   if (!tool) return {};
-  return { title: `${tool.name} — Toolbox`, description: tool.description };
+
+  return {
+    title: tool.name, // root layout's title template appends "— Toolbox"
+    description: tool.description,
+    alternates: { canonical: `/tools/${tool.slug}` },
+    openGraph: {
+      title: `${tool.name} — Toolbox`,
+      description: tool.description,
+      url: `/tools/${tool.slug}`,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${tool.name} — Toolbox`,
+      description: tool.description,
+    },
+  };
 }
 
 export default async function ToolPage({ params }: { params: Promise<{ slug: string }> }) {
