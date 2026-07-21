@@ -132,6 +132,7 @@ export const TOOLS: Tool[] = [
     description: "Convert audio between MP3, WAV, and AAC.",
     category: "Audio",
     icon: "Music",
+    functional: true,
   },
   {
     slug: "pomodoro-timer",

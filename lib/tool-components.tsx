@@ -22,38 +22,33 @@ export const toolComponents: Record<string, ComponentType> = {
     () => import("@/features/password-generator/components/password-generator-tool"),
     { loading: () => <ToolSkeleton /> }
   ),
-  "qr-generator": dynamic(
-    () => import("@/features/qr-generator/components/qr-generator-tool"),
-    { loading: () => <ToolSkeleton /> }
-  ),
-  "color-palette": dynamic(
-    () => import("@/features/color-palette/components/color-palette-tool"),
-    { loading: () => <ToolSkeleton /> }
-  ),
+  "qr-generator": dynamic(() => import("@/features/qr-generator/components/qr-generator-tool"), {
+    loading: () => <ToolSkeleton />,
+  }),
+  "color-palette": dynamic(() => import("@/features/color-palette/components/color-palette-tool"), {
+    loading: () => <ToolSkeleton />,
+  }),
   "unit-converter": dynamic(
     () => import("@/features/unit-converter/components/unit-converter-tool"),
     { loading: () => <ToolSkeleton /> }
   ),
-  "word-counter": dynamic(
-    () => import("@/features/word-counter/components/word-counter-tool"),
-    { loading: () => <ToolSkeleton /> }
-  ),
+  "word-counter": dynamic(() => import("@/features/word-counter/components/word-counter-tool"), {
+    loading: () => <ToolSkeleton />,
+  }),
   "hash-generator": dynamic(
     () => import("@/features/hash-generator/components/hash-generator-tool"),
     { loading: () => <ToolSkeleton /> }
   ),
-  "regex-tester": dynamic(
-    () => import("@/features/regex-tester/components/regex-tester-tool"),
-    { loading: () => <ToolSkeleton /> }
-  ),
+  "regex-tester": dynamic(() => import("@/features/regex-tester/components/regex-tester-tool"), {
+    loading: () => <ToolSkeleton />,
+  }),
   "contrast-checker": dynamic(
     () => import("@/features/contrast-checker/components/contrast-checker-tool"),
     { loading: () => <ToolSkeleton /> }
   ),
-  "loan-calc": dynamic(
-    () => import("@/features/loan-calculator/components/loan-calculator-tool"),
-    { loading: () => <ToolSkeleton /> }
-  ),
+  "loan-calc": dynamic(() => import("@/features/loan-calculator/components/loan-calculator-tool"), {
+    loading: () => <ToolSkeleton />,
+  }),
   "percentage-calculator": dynamic(
     () => import("@/features/percentage-calculator/components/percentage-calculator-tool"),
     { loading: () => <ToolSkeleton /> }
@@ -66,8 +61,11 @@ export const toolComponents: Record<string, ComponentType> = {
     () => import("@/features/type-scale-generator/components/type-scale-generator-tool"),
     { loading: () => <ToolSkeleton /> }
   ),
-  "merge-pdf": dynamic(
-    () => import("@/features/merge-pdf/components/merge-pdf-tool"),
+  "merge-pdf": dynamic(() => import("@/features/merge-pdf/components/merge-pdf-tool"), {
+    loading: () => <ToolSkeleton />,
+  }),
+  "audio-converter": dynamic(
+    () => import("@/features/audio-converter/components/audio-converter-tool"),
     { loading: () => <ToolSkeleton /> }
   ),
 };
