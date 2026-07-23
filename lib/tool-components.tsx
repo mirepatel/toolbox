@@ -72,4 +72,8 @@ export const toolComponents: Record<string, ComponentType> = {
     () => import("@/features/image-converter/components/image-converter-tool"),
     { loading: () => <ToolSkeleton /> }
   ),
+  "pomodoro-timer": dynamic(
+    () => import("@/features/pomodoro-timer/components/pomodoro-timer-tool"),
+    { loading: () => <ToolSkeleton /> }
+  ),
 };

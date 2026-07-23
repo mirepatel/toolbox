@@ -140,6 +140,7 @@ export const TOOLS: Tool[] = [
     description: "Stay focused with timed work and break intervals.",
     category: "Utilities",
     icon: "Timer",
+    functional: true,
   },
   {
     slug: "percentage-calculator",
