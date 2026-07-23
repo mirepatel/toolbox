@@ -68,4 +68,8 @@ export const toolComponents: Record<string, ComponentType> = {
     () => import("@/features/audio-converter/components/audio-converter-tool"),
     { loading: () => <ToolSkeleton /> }
   ),
+  "image-converter": dynamic(
+    () => import("@/features/image-converter/components/image-converter-tool"),
+    { loading: () => <ToolSkeleton /> }
+  ),
 };

@@ -166,11 +166,12 @@ export const TOOLS: Tool[] = [
     functional: true,
   },
   {
-    slug: "file-converter",
-    name: "File Converter",
-    description: "Convert files between common document formats.",
-    category: "Files",
-    icon: "RefreshCw",
+    slug: "image-converter",
+    name: "Image Converter",
+    description: "Convert images between PNG, JPEG, and WebP.",
+    category: "Image",
+    icon: "Image",
+    functional: true,
   },
   {
     slug: "markdown-editor",
